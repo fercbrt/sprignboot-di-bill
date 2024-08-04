@@ -1,5 +1,7 @@
 package es.fercbrt.springbootdibill.models;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,6 @@ import java.util.List;
 @Data
 @Component
 public class Bill {
-
     @Autowired
     private Client client;
     @Value("${bill.description}")
@@ -21,6 +22,16 @@ public class Bill {
     @Autowired
     @Qualifier("otherBillItems")
     private List<Item> items;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Finishing the bill's creation...");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("Destroying the bill...");
+    }
 
     public Double getTotal() {
         return items.stream().mapToDouble(Item::getTotal).sum();
