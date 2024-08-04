@@ -19,5 +19,6 @@ public class Bill {
     private Client client;
     @Value("${bill.description}")
     private String description;
+    @Autowired
     private List<Item> items;
 }
