@@ -21,4 +21,8 @@ public class Bill {
     private String description;
     @Autowired
     private List<Item> items;
+
+    public Double getTotal() {
+        return items.stream().mapToDouble(Item::getTotal).sum();
+    }
 }
