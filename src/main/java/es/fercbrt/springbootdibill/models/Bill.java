@@ -3,13 +3,19 @@ package es.fercbrt.springbootdibill.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Data
 @Component
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client {
-    private String name;
-    private String lastname;
+public class Bill {
+
+    @Autowired
+    private Client client;
+    private String description;
+    private List<Item> items;
 }
