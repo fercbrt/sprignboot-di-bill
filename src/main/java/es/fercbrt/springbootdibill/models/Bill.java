@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +12,6 @@ import java.util.List;
 
 @Data
 @Component
-@NoArgsConstructor
-@AllArgsConstructor
 public class Bill {
 
     @Autowired
@@ -20,6 +19,7 @@ public class Bill {
     @Value("${bill.description}")
     private String description;
     @Autowired
+    @Qualifier("otherBillItems")
     private List<Item> items;
 
     public Double getTotal() {
